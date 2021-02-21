@@ -195,3 +195,14 @@ PRODUCT_EXTRA_RECOVERY_KEYS += \
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 -include vendor/rr/config/partner_gms.mk
+
+# Launchers
+
+ifeq ($(TARGET_LAUNCHER),lawnchair)
+include vendor/rr/prebuilt/app/Lawnchair/lawnchair.mk
+else
+     $(warning TARGET_LAUNCHER is invalid or undefined, building Trebuchet as default launcher)
+
+PRODUCT_PACKAGES += \
+    Launcher3QuickStep
+endif
